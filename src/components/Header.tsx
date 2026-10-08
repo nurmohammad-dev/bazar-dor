@@ -1,4 +1,5 @@
 import Image from "next/image";
+import NavLinksPage from "./NavLinks";
 
 const HeaderPage = () => {
     const date=new Date().toLocaleDateString("bn-BD", {
@@ -25,6 +26,8 @@ const HeaderPage = () => {
                 <button className="btn btn-success">সাইন আপ</button>
             </div>
         </div>
+        
+        <NavLinksPage />
        </div>
     );
 };
