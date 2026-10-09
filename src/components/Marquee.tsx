@@ -27,8 +27,8 @@ const MarqueePage = async () => {
   const getBanglaUnit = (unit: string): string => {
     if (unit === "kg") return "কেজি";
     if (unit === "litre") return "লিটার";
-    if(unit=="piece") return "পিস";
-    if(unit=="dozen") return "ডজেন";
+    if (unit == "piece") return "পিস";
+    if (unit == "dozen") return "ডজেন";
     return unit;
   };
 

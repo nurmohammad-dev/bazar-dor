@@ -6,7 +6,6 @@ const HeaderPage = () => {
     const date=new Date().toLocaleDateString("bn-BD", {
         dateStyle: "full",
     });
-    console.log(date)
 
     return (
        <div className="container mx-auto">
