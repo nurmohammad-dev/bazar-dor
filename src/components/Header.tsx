@@ -1,5 +1,6 @@
 import Image from "next/image";
 import NavLinksPage from "./NavLinks";
+import MarqueePage from "./Marquee";
 
 const HeaderPage = () => {
     const date=new Date().toLocaleDateString("bn-BD", {
@@ -28,6 +29,7 @@ const HeaderPage = () => {
         </div>
         
         <NavLinksPage />
+        <MarqueePage/>
        </div>
     );
 };
