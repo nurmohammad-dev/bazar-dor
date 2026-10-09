@@ -10,7 +10,7 @@ const BannerPage = () => {
         <div className="mx-auto mt-4 flex max-w-7xl items-center justify-between rounded-3xl border border-gray-200 bg-white px-3 py-1 shadow-sm">
             
             <div>
-                <span className="rounded-full bg-green-100 text-sm text-green-700">
+                <span className="rounded-full p-2 py-1 bg-green-100 text-sm text-green-700">
                     {date}
                 </span>
 
@@ -24,7 +24,7 @@ const BannerPage = () => {
                     দামের পরিবর্তন এক জায়গায়।
                 </p>
 
-                <button className="btn btn-success mt-5 text-base text-white">
+                <button className="btn bg-green-900 mt-5 text-base text-white hover:bg-green-800">
                     সব পণ্য দেখুন
                 </button>
             </div>
