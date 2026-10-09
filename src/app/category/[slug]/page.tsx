@@ -71,64 +71,72 @@ const CategoryPage = async ({
     sortedProducts.sort((a, b) => b.today - a.today);
   }
 
-  // ================= UI =================
-
   return (
-    <main className="mx-auto max-w-7xl px-4 py-8">
-      {/* Header */}
-      <div className="flex flex-col gap-5 md:flex-row md:items-center md:justify-between">
-        <div className="flex items-center gap-3">
-          <div className="flex h-14 w-14 items-center justify-center rounded-xl bg-gray-100 text-3xl">
+    <main className="min-h-screen bg-[#f4f8f4] px-4 py-5">
+      <div className="mx-auto max-w-7xl">
+        <div className="rounded-2xl border-2 border-[#dce7dd] bg-[#fbfdfb] px-5 py-4 shadow-sm">
+          <div className="flex items-center gap-4">
+            <div className="flex h-14 w-14 items-center justify-center rounded-xl bg-[#f0f5f0] text-3xl">
             {category.icon}
-          </div>
+            </div>
 
-          <div>
-            <h1 className="text-3xl font-bold">{category.nameBn}</h1>
+            <div>
+              <h1 className="text-3xl font-bold">{category.nameBn}</h1>
 
-            <p className="text-sm text-gray-500">{products.length}টি পণ্য</p>
+              <p className="text-sm text-gray-500">
+                {products.length}টি পণ্যের আজকের দাম ও পরিবর্তন
+              </p>
+            </div>
           </div>
         </div>
 
-        <form method="GET">
-          <select
-            name="sort"
-            defaultValue={sort || ""}
-            className="select select-bordered"
-          >
-            <option value="">সাজান</option>
-
-            <option value="low">দাম: কম থেকে বেশি</option>
-
-            <option value="high">দাম: বেশি থেকে কম</option>
-          </select>
-
-          <button type="submit" className="btn ml-2 bg-green-500 text-white">
-            সাজান
-          </button>
-        </form>
-      </div>
-
-      {sortedProducts.length > 0 ? (
-        <div className="mt-8 grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3">
-          {sortedProducts.map((product) => (
-            <ProductCard key={product.id} product={product} />
-          ))}
-        </div>
-      ) : (
-        <div className="mt-10 rounded-2xl border border-dashed p-12 text-center">
-          <div className="text-5xl">📦</div>
-
-          <h2 className="mt-4 text-2xl font-bold">কোনো পণ্য পাওয়া যায়নি</h2>
-
-          <p className="mt-2 text-gray-500">
-            এই category-তে বর্তমানে কোনো পণ্য নেই।
+        <div className="mt-6 flex items-center justify-between">
+          <p className="text-sm text-gray-600">
+            মোট {products.length}টি পণ্য দেখানো হচ্ছে
           </p>
 
-          <Link href="/" className="btn mt-5 bg-green-500 text-white">
-            হোম পেজে ফিরুন
-          </Link>
+          <form method="GET" className="flex items-center gap-2">
+            <label htmlFor="sort" className="text-sm text-gray-600">
+              সাজান
+            </label>
+            <select
+              id="sort"
+              name="sort"
+              defaultValue={sort || ""}
+              className="h-10 rounded-xl border-2 border-gray-300 bg-[#fbfdfb] px-3 text-sm text-gray-700 shadow-sm outline-none focus:border-green-600"
+            >
+              <option value="">ডিফল্ট</option>
+              <option value="low">দাম: কম থেকে বেশি</option>
+              <option value="high">দাম: বেশি থেকে কম</option>
+            </select>
+            <button type="submit" className="sr-only">
+              সাজান
+            </button>
+          </form>
         </div>
-      )}
+
+        {sortedProducts.length > 0 ? (
+          <div className="mt-5 grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
+            {sortedProducts.map((product) => (
+              <ProductCard key={product.id} product={product} />
+            ))}
+          </div>
+        ) : (
+          <div className="mt-10 rounded-2xl border border-dashed p-12 text-center">
+            <div className="text-5xl">📦</div>
+
+            <h2 className="mt-4 text-2xl font-bold">কোনো পণ্য পাওয়া যায়নি</h2>
+
+            <p className="mt-2 text-gray-500">
+              এই category-তে বর্তমানে কোনো পণ্য নেই।
+            </p>
+
+            <Link href="/" className="btn mt-5 bg-green-500 text-white">
+              হোম পেজে ফিরুন
+            </Link>
+          </div>
+        )}
+      </div>
     </main>
   );
 };
