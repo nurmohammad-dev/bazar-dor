@@ -1,12 +1,15 @@
 "use client";
 
 import { authClient } from "@/lib/auth-client";
-import { redirect } from "next/navigation";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
 import React from "react";
 import toast from "react-hot-toast";
 import { FaGithub, FaGoogle } from "react-icons/fa";
 
 const SignUpPage = () => {
+  const router = useRouter();
+
   const handleSumit = async (e: React.SubmitEvent<HTMLFormElement>) => {
     e.preventDefault();
     const formData = new FormData(e.target);
@@ -45,7 +48,7 @@ const SignUpPage = () => {
     });
     if (data) {
       toast.success("অ্যাকউন্ট সফলভাবে তৈরি হয়েছে!");
-      redirect("/");
+      router.push("/signin");
     }
 
     if (error) {
@@ -139,6 +142,12 @@ const SignUpPage = () => {
           </span>
         </button>
       </div>
+      <p className="mt-4 text-sm text-gray-600">
+        আগে থেকেই অ্যাকাউন্ট আছে?{" "}
+        <Link href="/signin" className="text-green-700 hover:underline">
+          সাইন ইন করুন
+        </Link>
+      </p>
     </div>
   );
 };

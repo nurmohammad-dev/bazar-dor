@@ -2,6 +2,7 @@
 
 import { authClient } from "@/lib/auth-client";
 import React from "react";
+import Link from "next/link";
 import toast from "react-hot-toast";
 import { FaGithub, FaGoogle } from "react-icons/fa";
 
@@ -99,6 +100,12 @@ const SignInPage = () => {
           </span>
         </button>
       </div>
+      <p className="mt-4 text-sm text-gray-600">
+        অ্যাকাউন্ট নেই?{" "}
+        <Link href="/signup" className="text-green-700 hover:underline">
+          সাইন আপ করুন
+        </Link>
+      </p>
     </div>
   );
 };

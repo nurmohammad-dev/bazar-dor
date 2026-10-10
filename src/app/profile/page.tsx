@@ -10,29 +10,6 @@ const ProfilePage = () => {
   const user = session?.user;
   const router = useRouter();
 
-  const handleSubmit = async (e: React.SubmitEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    const formData = new FormData(e.currentTarget);
-    const name = formData.get("name") as string;
-
-    if (!name.trim()) {
-      toast.error("নাম লিখুন।");
-      return;
-    }
-
-    const { data, error } = await authClient.updateUser({
-      name: name.trim(),
-    });
-
-    if (data) {
-      toast.success("নাম সফলভাবে আপডেট হয়েছে!");
-    }
-
-    if (error) {
-      toast.error("নাম আপডেট করতে সমস্যা হয়েছে।");
-    }
-  };
-
   const handleSignOut = async () => {
     const { error } = await authClient.signOut();
 
@@ -65,26 +42,15 @@ const ProfilePage = () => {
           </button>
         </div>
 
-        <form
-          onSubmit={handleSubmit}
-          className="mt-6 rounded-2xl border border-gray-200 bg-white p-6"
-        >
+        <div className="mt-6 rounded-2xl border border-gray-200 bg-white p-6">
           <h2 className="text-xl font-bold">নাম হালনাগাদ করুন</h2>
-          <label className="label mt-3">নাম</label>
-          <input
-            name="name"
-            type="text"
-            className="input w-full"
-            defaultValue={user?.name}
-            placeholder="আপনার নাম"
-          />
-          <button
-            type="submit"
+          <Link
+            href="/profile/update"
             className="btn mt-3 bg-green-700 text-white hover:bg-green-600"
           >
             নাম হালনাগাদ করুন
-          </button>
-        </form>
+          </Link>
+        </div>
 
         <Link href="/" className="btn btn-ghost mt-3">
           হোম পেজে ফিরে যান

@@ -13,6 +13,9 @@ export interface IProduct {
   };
 }
 
+const toBanglaNumber = (value: number | string) =>
+  String(value).replace(/\d/g, (digit) => "০১২৩৪৫৬৭৮৯"[Number(digit)]);
+
 const ProductCard = ({ product }: { product: IProduct }) => {
   return (
 <Link href={`/product/${product.slug}`}>
@@ -41,7 +44,7 @@ const ProductCard = ({ product }: { product: IProduct }) => {
           </p>
 
           <p className="text-lg font-bold">
-            {product.today} টাকা
+            {toBanglaNumber(product.today)} টাকা
           </p>
         </div>
 
@@ -57,7 +60,7 @@ const ProductCard = ({ product }: { product: IProduct }) => {
           {product.change.dir === "up" && "▲"}
           {product.change.dir === "down" && "▼"}
           {" "}
-          {Math.abs(product.change.pct)}%
+          {toBanglaNumber(Math.abs(product.change.pct))}%
         </span>
 
       </div>
