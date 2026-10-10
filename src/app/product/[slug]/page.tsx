@@ -44,7 +44,7 @@ const ProductDetailsPage = async ({
   const { slug } = await params;
 
   const productsRes = await fetch(
-    "https://api.api-store.workers.dev/api/bazardor/products",
+    "https://openapi.programming-hero.com/api/bazardor/products",
     { cache: "no-store" },
   );
 
@@ -61,7 +61,7 @@ const ProductDetailsPage = async ({
   }
 
   const productRes = await fetch(
-    `https://api.api-store.workers.dev/api/bazardor/products/${productInfo.id}`,
+    `https://openapi.programming-hero.com/api/bazardor/products/${productInfo.id}`,
     { cache: "no-store" },
   );
 

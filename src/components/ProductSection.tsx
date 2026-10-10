@@ -2,7 +2,7 @@ import ProductCard, { IProduct } from "./ProductCard";
 
 const ProductSection = async () => {
   const res = await fetch(
-    "https://api.api-store.workers.dev/api/bazardor/products",
+    "https://openapi.programming-hero.com/api/bazardor/products",
   );
   const data: IProduct[] = await res.json();
 

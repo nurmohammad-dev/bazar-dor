@@ -18,7 +18,7 @@ const CategoryPage = async ({
   const { sort } = await searchParams;
 
   const categoryRes = await fetch(
-    `https://api.api-store.workers.dev/api/bazardor/categories/${slug}`,
+    `https://openapi.programming-hero.com/api/bazardor/categories/${slug}`,
     {
       cache: "no-store",
     },
@@ -77,7 +77,7 @@ const CategoryPage = async ({
         <div className="rounded-2xl border-2 border-[#dce7dd] bg-[#fbfdfb] px-5 py-4 shadow-sm">
           <div className="flex items-center gap-4">
             <div className="flex h-14 w-14 items-center justify-center rounded-xl bg-[#f0f5f0] text-3xl">
-            {category.icon}
+              {category.icon}
             </div>
 
             <div>
