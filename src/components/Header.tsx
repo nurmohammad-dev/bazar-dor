@@ -1,6 +1,7 @@
 import Image from "next/image";
 import NavLinksPage from "./NavLinks";
 import MarqueePage from "./Marquee";
+import UserInfo from "./UserInfo";
 
 const HeaderPage = () => {
     const date=new Date().toLocaleDateString("bn-BD", {
@@ -21,10 +22,8 @@ const HeaderPage = () => {
                 <p className="text-sm text-gray-500">{date}</p>
             </div>
 
-            <div className="ml-auto flex gap-2">
-                <button className="btn">সাইন ইন</button>
-                <button className="btn btn-success">সাইন আপ</button>
-            </div>
+            <UserInfo />
+         
         </div>
         
         <NavLinksPage />
