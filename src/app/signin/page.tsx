@@ -1,38 +1,61 @@
 "use client";
+
 import { authClient } from "@/lib/auth-client";
 import React from "react";
 import toast from "react-hot-toast";
+import { FaGithub, FaGoogle } from "react-icons/fa";
 
 const SignInPage = () => {
   const handleSubmit = async (e: React.SubmitEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const formData = new FormData(e.target);
+
+    const formData = new FormData(e.currentTarget);
+
     const user = Object.fromEntries(formData.entries()) as {
       email: string;
-      password: string};
-    const {data, error} = await authClient.signIn.email({
-        ...user,
-        callbackURL: "/",
-      }); 
+      password: string;
+    };
 
-      if(data) {
-        toast.success("সাইন ইন সফল হয়েছে!");
-      } 
-        if(error) { 
-        toast.error("ইমেইল অথবা পাসওয়ার্ড সঠিক নয়। আবার চেষ্টা করুন।");
-        }
+    const { data, error } = await authClient.signIn.email({
+      ...user,
+      callbackURL: "/",
+    });
+
+    if (data) {
+      toast.success("সাইন ইন সফল হয়েছে!");
+    }
+
+    if (error) {
+      toast.error("ইমেইল অথবা পাসওয়ার্ড সঠিক নয়। আবার চেষ্টা করুন।");
+    }
   };
-  
-    
+
+  const handleGoogleSignIn = async () => {
+    await authClient.signIn.social({
+      provider: "google",
+      callbackURL: "/",
+    });
+  };
+
+  const handleGitHubSignIn = async () => {
+    await authClient.signIn.social({
+      provider: "github",
+      callbackURL: "/",
+    });
+  };
+
   return (
-    <div className="flex flex-col min-h-[60vh] items-center justify-center ">
+    <div className="flex min-h-[60vh] flex-col items-center justify-center">
       <h2 className="text-2xl font-bold">সাইন ইন করুন</h2>
+
       <p className="text-sm text-gray-500">
         বিস্তারিত দাম, বাজার তুলনা ও প্রোফাইল দেখতে অ্যাকাউন্টে ঢুকুন।
       </p>
+
       <form onSubmit={handleSubmit} className="mt-4">
         <fieldset className="fieldset bg-base-200 border-base-300 rounded-box w-xs border p-4">
           <label className="label">ইমেইল</label>
+
           <input
             name="email"
             type="email"
@@ -41,6 +64,7 @@ const SignInPage = () => {
           />
 
           <label className="label">পাসওয়ার্ড</label>
+
           <input
             name="password"
             type="password"
@@ -48,11 +72,33 @@ const SignInPage = () => {
             placeholder="কমপক্ষে ৮ অক্ষর"
           />
 
-          <button type="submit" className="btn bg-green-700 hover:bg-green-600 text-white mt-4">
+          <button
+            type="submit"
+            className="btn mt-4 bg-green-700 text-white hover:bg-green-600"
+          >
             সাইন ইন করুন
           </button>
         </fieldset>
       </form>
+
+      <div className="mt-4 flex gap-2">
+        <button onClick={handleGoogleSignIn} className="btn h-auto flex-1 py-2">
+          <FaGoogle className="text-base" />
+          <span className="leading-tight text-center">
+            Google দিয়ে
+            <br />
+            চালিয়ে যান
+          </span>
+        </button>
+
+        <button onClick={handleGitHubSignIn} className="btn h-auto flex-1 py-2">
+          <FaGithub className="text-base" />
+          <span className="leading-tight text-center">
+            GitHub দিয়ে
+            চালিয়ে যান
+          </span>
+        </button>
+      </div>
     </div>
   );
 };
