@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 
 const BannerPage = () => {
 
@@ -24,9 +25,9 @@ const BannerPage = () => {
                     দামের পরিবর্তন এক জায়গায়।
                 </p>
 
-                <button className="btn bg-green-900 mt-5 text-base text-white hover:bg-green-800">
+                <Link href="#products" className="btn bg-green-900 mt-5 text-base text-white hover:bg-green-800">
                     সব পণ্য দেখুন
-                </button>
+                </Link>
             </div>
 
             <div>

@@ -47,10 +47,9 @@ const ProductSection = async () => {
       </div>
 
       {/* Section C */}
-      <div>
-        <h2>সব পণ্য</h2>
-
-        <p>মোট {data.length}টি পণ্য দেখানো হচ্ছে</p>
+      <div id="products">
+        <h2 className="mb-1 text-2xl font-bold">সব পণ্য</h2>
+        <p className="mb-3">মোট {data.length}টি পণ্য দেখানো হচ্ছে</p>
 
         <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3 max-w-7xl mx-auto">
           {data.map((product) => (

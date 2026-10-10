@@ -2,13 +2,23 @@
 
 import { authClient } from "@/lib/auth-client";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
+import toast from "react-hot-toast";
 
 const UserInfo = () => {
   const { data: session } = authClient.useSession();
   const user = session?.user;
+  const router = useRouter();
 
   const handleSignOut = async () => {
-    await authClient.signOut();
+    const { error } = await authClient.signOut();
+
+    if(error) {
+      toast.error("সাইন আউট করতে সমস্যা হয়েছে।");
+      return;
+    }
+
+    router.push("/");
   };
 
   return (

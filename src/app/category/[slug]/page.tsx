@@ -41,7 +41,7 @@ const CategoryPage = async ({
   const category: ICategory = await categoryRes.json();
 
   const productsRes = await fetch(
-    `https://api.api-store.workers.dev/api/bazardor/products?category=${slug}`,
+    `https://openapi.programming-hero.com/api/bazardor/products?category=${slug}`,
     {
       cache: "no-store",
     },

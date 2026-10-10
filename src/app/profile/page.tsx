@@ -2,11 +2,13 @@
 
 import { authClient } from "@/lib/auth-client";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
 
 const ProfilePage = () => {
   const { data: session } = authClient.useSession();
   const user = session?.user;
+  const router = useRouter();
 
   const handleSubmit = async (e: React.SubmitEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -32,7 +34,14 @@ const ProfilePage = () => {
   };
 
   const handleSignOut = async () => {
-    await authClient.signOut();
+    const { error } = await authClient.signOut();
+
+    if(error) {
+      toast.error("সাইন আউট করতে সমস্যা হয়েছে।");
+      return;
+    }
+
+    router.push("/");
   };
 
   return (
